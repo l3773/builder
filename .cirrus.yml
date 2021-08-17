@@ -10,7 +10,6 @@ task:
       image: inok2341/anu:latest
       cpu: 8
       memory: 32G      
-
     rclone_setup_script:
       - mkdir -p ~/.config/rclone
       - echo "$rclone_config" > ~/.config/rclone/rclone.conf
@@ -34,11 +33,6 @@ task:
       - ccache -M 20G
       - ccache -o compression=true
       - ccache -z
-     collect_anu_script:
-      - #mka nad -j8 &
-      - #sleep 90m
-      - #kill %1
-      - #ccache -s
      final_anu_script:
       - mka nad -j8
     compress_ccache_script:    
