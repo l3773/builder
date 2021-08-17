@@ -11,6 +11,8 @@ task:
       cpu: 8
       memory: 32G      
 
+    monitor_background_script:
+      - ./monitor
     rclone_setup_script:
       - mkdir -p ~/.config/rclone
       - echo "$rclone_config" > ~/.config/rclone/rclone.conf
@@ -22,9 +24,7 @@ task:
       - rm -rf ccache.tar.gz
       - mkdir -p /tmp/rom
       - cd /tmp/rom
-    monitor_background_script:
-      - ./monitor
-    anu_script:
-      - ./anu
-    compress_ccache_script:    
-      - ./upload
+      - curl https://raw.githubusercontent.com/I-n-o-k/aosp/main/anu -o build.sh
+      - bash build.sh
+      - curl https://raw.githubusercontent.com/I-n-o-k/anu/Nusantara/upload -o upload.sh
+      - bash upload.sh
