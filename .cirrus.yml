@@ -7,7 +7,7 @@ task:
     name: nusantara
     timeout_in: 120m
     container:
-      image: inok2341/anu:latest
+      image: inok2341/builder:latest
       cpu: 8
       memory: 32G      
     rclone_setup_script:
