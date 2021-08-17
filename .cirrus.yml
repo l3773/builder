@@ -15,7 +15,6 @@ task:
       - mkdir -p ~/.config/rclone
       - echo "$rclone_config" > ~/.config/rclone/rclone.conf
     download_ccache_background_script:
-      - curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" --data "text=Download ccache at $(date)&chat_id=${tg_id}&parse_mode=html"
       - df -h && free -h && nproc && cat /etc/os* && env
       - rclone copy inok:nusantara/ccache.tar.gz /tmp -P
       - cd /tmp
@@ -25,8 +24,7 @@ task:
       - cd /tmp/rom
     monitor_background_script:
       - ./monitor
-    building_script:
+    anu_script:
       - ./anu
-      - time rclone copy /tmp/rom/out/error.log inok: -P
     compress_ccache_script:    
       - ./upload
