@@ -7,7 +7,7 @@ task:
     name: nusantara
     timeout_in: 120m
     container:
-      image: inok2341/builder:latest
+      image: inok2341/anu:latest
       cpu: 8
       memory: 32G      
 
@@ -15,7 +15,6 @@ task:
       - mkdir -p ~/.config/rclone
       - echo "$rclone_config" > ~/.config/rclone/rclone.conf
     download_ccache_background_script:
-      - curl -s "https://api.telegram.org/bot${bot_api}/sendmessage" --data "text=Download ccache at $(date)&chat_id=${tg_id}&parse_mode=html"
       - df -h && free -h && nproc && cat /etc/os* && env
       - rclone copy inok:nusantara/ccache.tar.gz /tmp -P
       - cd /tmp
@@ -23,10 +22,25 @@ task:
       - rm -rf ccache.tar.gz
       - mkdir -p /tmp/rom
       - cd /tmp/rom
-    monitor_background_script:
+    monitor_anu_background_script:
       - ./monitor
-    building_script:
-      - ./build
+    anu_script:
+      - ./anu
+    set_build_anu_script:
+      - lunch nad_juice-userdebug
+      - export CCACHE_DIR=/tmp/ccache
+      - export CCACHE_EXEC=$(which ccache)
+      - export USE_CCACHE=1
+      - ccache -M 20G
+      - ccache -o compression=true
+      - ccache -z
+     collect_anu_script:
+      - #mka nad -j8 &
+      - #sleep 90m
+      - #kill %1
+      - #ccache -s
+     final_anu_script:
+      - mka nad -j8
     compress_ccache_script:    
       - ./upload
 
