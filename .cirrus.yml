@@ -10,16 +10,15 @@ task:
       memory: 32G      
 
     monitor_background_script:
-      - ./monitor
+      - mkdir -p ~/.config/rclone
+      - echo "$rclone_config" > ~/.config/rclone/rclone.conf
       - df -h && free -h && nproc && cat /etc/os* && env
       - rclone copy inok:nusantara/ccache.tar.gz /tmp -P
       - cd /tmp
       - time tar xf ccache.tar.gz
       - rm -rf ccache.tar.gz
+      - ./monitor
     rclone_setup_script:
-      - mkdir -p ~/.config/rclone
-      - echo "$rclone_config" > ~/.config/rclone/rclone.conf
-      - mkdir -p /tmp/rom
       - cd /tmp/rom
       - curl https://raw.githubusercontent.com/I-n-o-k/aosp/main/anu -o y.sh
       - bash y.sh
