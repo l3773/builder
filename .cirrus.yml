@@ -7,9 +7,10 @@ task:
     name: nusantara
     timeout_in: 120m
     container:
-      image: inok2341/builder:latest
+      image: inok2341/anu:latest
       cpu: 8
       memory: 32G      
+
     rclone_setup_script:
       - mkdir -p ~/.config/rclone
       - echo "$rclone_config" > ~/.config/rclone/rclone.conf
@@ -21,11 +22,11 @@ task:
       - rm -rf ccache.tar.gz
       - mkdir -p /tmp/rom
       - cd /tmp/rom
-    monitor_anu_background_script:
+    monitor_background_script:
       - ./monitor
     anu_script:
       - ./anu
-    set_build_anu_script:
+    set_build_script:
       - lunch nad_juice-userdebug
       - export CCACHE_DIR=/tmp/ccache
       - export CCACHE_EXEC=$(which ccache)
@@ -33,7 +34,7 @@ task:
       - ccache -M 20G
       - ccache -o compression=true
       - ccache -z
-     final_anu_script:
+     final_script:
       - mka nad -j8
     compress_ccache_script:    
       - ./upload
