@@ -22,7 +22,7 @@ task:
       - time tar xf ccache.tar.gz
       - rm -rf ccache.tar.gz
     mengsinkronisasi_script:
-      - ./mengsinkronisasi
+      - ./sinkronisasi
 #   mengumpulkan_ccache_script:
       - mka nad -j8 &
       - sleep 90m
