@@ -28,7 +28,7 @@ task:
       - sleep 90m
       - kill %1
       - ccache -s
-    membuat_build_akhir_script:
+    membuat_akhir_script:
       - mka nad -j8
     mengunggah_script:
       - ./mengunggah
