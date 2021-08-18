@@ -25,12 +25,14 @@ task:
       - ./sinkronisasi
     mengumpulkan_ccache_script:
       - cd /tmp/rom
+      - lunch nad_juice-userdebug
       - mka nad -j8 &
       - sleep 90m
       - kill %1
       - ccache -s
 #    membuat_akhir_script:
       - cd /tmp/rom
+      - lunch nad_juice-userdebug
       - mka nad -j8
     mengunggah_script:
       - ./mengunggah
