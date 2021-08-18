@@ -22,10 +22,10 @@ task:
     anu_script:
       - ./anu
 #   collect_script:
-      - #mka nad -j8 &
-      - #sleep 90m
-      - #kill %1
-      - #ccache -s
+      - mka nad -j8 &
+      - sleep 90m
+      - kill %1
+      - ccache -s
     final_script:
       - mka nad -j8
     upload_script:
