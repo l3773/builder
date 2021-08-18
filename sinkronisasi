@@ -12,7 +12,6 @@ git clone --depth=1 https://github.com/GengKapak/GengKapak-clang --single-branch
 cd /tmp/rom
 export PREBUILTKERNEL=true
 . build/envsetup.sh
-lunch nad_juice-userdebug
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
