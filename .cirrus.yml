@@ -11,6 +11,7 @@ task:
 
     monitor_background_script:
       - ./monitor
+    ccache_background_script:
       - mkdir -p ~/.config/rclone
       - echo "$rclone_config" > ~/.config/rclone/rclone.conf
       - df -h && free -h && nproc && cat /etc/os* && env
@@ -18,5 +19,5 @@ task:
       - cd /tmp
       - time tar xf ccache.tar.gz
       - rm -rf ccache.tar.gz
-    rclone_setup_script:
+    anu_script:
       - ./anu
