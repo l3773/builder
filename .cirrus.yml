@@ -22,6 +22,7 @@ task:
       - cd ~/ccache
       - time tar xf ccache.tar.gz
       - rm -rf ccache.tar.gz
+      - mkdir -p ~/rom
     mengsinkronisasi_script:
       - ./sinkronisasi
     mengumpulkan_ccache_script:
