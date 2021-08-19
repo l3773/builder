@@ -19,14 +19,14 @@ task:
       - df -h && free -h && nproc && cat /etc/os* && env
       - mkdir -p ~/ccache
       - rclone copy inok:nusantara/ccache.tar.gz ~/ccache -P
-      - cd ~/ccache
+      - cd /tmp/ccache
       - time tar xf ccache.tar.gz
       - rm -rf ccache.tar.gz
-      - mkdir -p ~/rom
+      - mkdir -p /tmp/rom
     mengsinkronisasi_script:
       - ./sinkronisasi
     mengumpulkan_ccache_script:
-      - cd ~/rom
+      - cd /tmp/rom
       - . build/envsetup.sh
       - lunch nad_juice-userdebug
       - mka nad -j8 &
@@ -34,7 +34,7 @@ task:
       - kill %1
       - ccache -s
 #    membuat_akhir_script:
-      - cd ~/tmp/rom
+      - cd /tmp/rom
       - . build/envsetup.sh
       - lunch nad_juice-userdebug
       - mka nad -j8
